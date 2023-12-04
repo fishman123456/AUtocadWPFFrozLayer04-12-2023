@@ -12,6 +12,9 @@ namespace AUtocadWPFFrozLayer04_12_2023
     // программа сделана на основе _____________    autocad_wf_layer_add_29-03-2023
     public class ClassFrozen
     {
+        // поле для хранения списка
+        public List<string> ClTransports = new List<string>() { "1","2" };
+
         [CommandMethod("NewCommand")]
         public void NewCommand()
         {
@@ -24,7 +27,7 @@ namespace AUtocadWPFFrozLayer04_12_2023
             Database acCurDb = acDoc.Database;
             // переменная стринг для работы со слоями
             //string froz = "0";
-            List<string> strings = new List<string>() { "1", "2" };
+            //List<string> strings = new List<string>() { "1", "2" };
             // блокируем документ
             using (AcadApp.DocumentLock docloc = acDoc.LockDocument())
             {
@@ -34,7 +37,7 @@ namespace AUtocadWPFFrozLayer04_12_2023
                     // открываем таблицу слоев документа
                     LayerTable acLyrTbl = tr.GetObject(acCurDb.LayerTableId, OpenMode.ForWrite) as LayerTable;
 
-                    foreach (var froz in strings)
+                    foreach (var froz in ClTransports)
                     {
                         // если в таблице слоев нет нашего слоя - прекращаем выполнение команды
                         if (acLyrTbl.Has(froz) == false)
@@ -54,12 +57,17 @@ namespace AUtocadWPFFrozLayer04_12_2023
                     }
                     // фиксируем транзакцию
                     tr.Commit();
+                    
                 }
             }
         }
         public List<string> ListTransport(List<string> transports)
         {
-            return transports;
+            foreach (var transport in transports)
+            {
+                ClTransports.Add(transport);
+            }
+            return ClTransports;
         }
     }
 }

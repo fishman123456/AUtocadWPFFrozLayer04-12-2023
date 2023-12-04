@@ -22,6 +22,7 @@ namespace AUtocadWPFFrozLayer04_12_2023
     {
         // открываем видимость для обьекта класса ClassFrozen
         ClassFrozen classFrozen = new ClassFrozen();
+        // поле для хранения 
         public UserControl1()
         {
             InitializeComponent();
@@ -29,6 +30,8 @@ namespace AUtocadWPFFrozLayer04_12_2023
         }
         // список куда складывать будем имена слоёв
         public List<string> list_lay_name = new List<string>();
+
+
 
         // по клику кнопки собираем из тексбокса строки в список по \n\r
         private void B0_Click(object sender, RoutedEventArgs e)
@@ -55,13 +58,10 @@ namespace AUtocadWPFFrozLayer04_12_2023
                 classFrozen.ListTransport(list_lay_name);
                 
                 // очищаем список
-                list_lay_name.Clear();
+                //list_lay_name.Clear();
             }
-        }
-
-        private void lay_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+            this.DialogResult = true;
+            this.Close();
         }
     }
 }

@@ -30,7 +30,10 @@
             
         </Grid.RowDefinitions>
         <TextBox x:Name="lay" Grid.Row="2" Grid.Column="1" Margin="10"
-                 Grid.RowSpan="5" Grid.ColumnSpan="5" TextChanged="lay_TextChanged"/>
+                 Grid.RowSpan="5" Grid.ColumnSpan="5" 
+                 TextWrapping="Wrap" 
+                 AcceptsReturn="True"
+                 VerticalScrollBarVisibility="Visible"/>
         <Button Name="B0" Margin="5" Content="Заморозить" 
                 Grid.Row="9" Grid.Column="1" 
                 Grid.ColumnSpan="5"
