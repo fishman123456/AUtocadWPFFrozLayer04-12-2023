@@ -20,7 +20,8 @@ namespace AUtocadWPFFrozLayer04_12_2023
     /// </summary>
     public partial class UserControl1 : Window
     {
-       
+        // открываем видимость для обьекта класса ClassFrozen
+        ClassFrozen classFrozen = new ClassFrozen();
         public UserControl1()
         {
             InitializeComponent();
@@ -28,24 +29,32 @@ namespace AUtocadWPFFrozLayer04_12_2023
         }
         // список куда складывать будем имена слоёв
         public List<string> list_lay_name = new List<string>();
+
+        // по клику кнопки собираем из тексбокса строки в список по \n\r
         private void B0_Click(object sender, RoutedEventArgs e)
         {
+            // разделитель по строкам для заполнения списка
             string[] separator = { "\n", "\r" };
             // добавляем данные в список из текстбокса TextBox_Lay_name 
             string[] massTextBoxLayName = lay.Text.Split(separator, StringSplitOptions.RemoveEmptyEntries);
             try
             {
-
+                // цикл для заполнения списка
                 foreach (var item in massTextBoxLayName)
                 {
-                    
+                    list_lay_name.Add(item);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-
+            finally
+            {
+                // передаём спсок в метод для замораживания слоёв
+                classFrozen.NewCommand();
+                list_lay_name.Clear();
+            }
         }
 
         private void lay_TextChanged(object sender, TextChangedEventArgs e)
