@@ -25,7 +25,7 @@ namespace AUtocadWPFFrozLayer04_12_2023
         public UserControl1()
         {
             InitializeComponent();
-            WF1.ShowDialog();
+
         }
         // список куда складывать будем имена слоёв
         public List<string> list_lay_name = new List<string>();
@@ -52,7 +52,9 @@ namespace AUtocadWPFFrozLayer04_12_2023
             finally
             {
                 // передаём спсок в метод для замораживания слоёв
-                classFrozen.NewCommand();
+                classFrozen.ListTransport(list_lay_name);
+                
+                // очищаем список
                 list_lay_name.Clear();
             }
         }
