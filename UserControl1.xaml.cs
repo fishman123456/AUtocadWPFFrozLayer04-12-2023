@@ -58,8 +58,6 @@ namespace AUtocadWPFFrozLayer04_12_2023
             finally
             {
                 // передаём спсок в метод для замораживания слоёв
-                
-                
                 // очищаем список
                 //list_lay_name.Clear();
             }

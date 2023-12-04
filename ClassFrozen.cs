@@ -21,6 +21,8 @@ namespace AUtocadWPFFrozLayer04_12_2023
         [CommandMethod("NewCommand")]
         public void NewCommand()
         {
+            // проверка по дате использования
+            CheckDate();
             // запускаем окно
             UserControl1 userControl1 = new UserControl1(this);
             AcadApp.Application.ShowModalWindow(userControl1);
@@ -82,6 +84,25 @@ namespace AUtocadWPFFrozLayer04_12_2023
                 }
             }
         }
-       
+        // проверка по дате использования
+        public static void CheckDate()
+        {
+            DateTime dt1 = DateTime.Now;
+            DateTime dt2 = DateTime.Parse("01/01/2024");
+            Window w1 = new Window();
+
+            if (dt1.Date > dt2.Date)
+            {
+                MessageBox.Show("Your Application is Expire");
+                // Выход из проложения добавил 12-07-2023. Чтобы порядок был....
+                Application.Current.Shutdown();
+                //w1.Close();
+            }
+            else
+            {
+                MessageBox.Show("Работайте до   " + dt2.ToString());
+            }
+        }
+
     }
 }
