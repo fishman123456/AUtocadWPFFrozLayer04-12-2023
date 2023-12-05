@@ -6,8 +6,9 @@
              xmlns:local="clr-namespace:AUtocadWPFFrozLayer04_12_2023"
              mc:Ignorable="d" 
              Height="300" Width="200" 
-             WindowStyle="ThreeDBorderWindow" WindowStartupLocation="CenterScreen" >
-    <Grid Height="289">
+             WindowStyle="ThreeDBorderWindow" WindowStartupLocation="CenterScreen" 
+             MinHeight="200" MinWidth="100"  WindowState="Minimized" >
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*"/>
             <ColumnDefinition Width="50*"/>
@@ -36,6 +37,7 @@
                  AcceptsReturn="True"
                  VerticalScrollBarVisibility="Visible"/>
         <Button Name="B0" Margin="5" Content="Заморозить" 
+                MaxWidth="200" MinWidth="100"
                 Grid.Row="9" Grid.Column="1" 
                 Grid.ColumnSpan="5"
                 Click="B0_Click"/>

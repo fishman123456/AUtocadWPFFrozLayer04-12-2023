@@ -70,7 +70,7 @@ namespace AUtocadWPFFrozLayer04_12_2023
                     }
                     catch (System.Exception ex)
                     {
-                        MessageBox.Show($"что-то не так - {ex.Message}");
+                        MessageBox.Show($"Проверте текущий слой  - {ex.Message}");
                     }
                     finally
                     {
