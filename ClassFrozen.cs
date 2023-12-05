@@ -41,20 +41,26 @@ namespace AUtocadWPFFrozLayer04_12_2023
                 {
                     // открываем таблицу слоев документа
                     LayerTable acLyrTbl = tr.GetObject(acCurDb.LayerTableId, OpenMode.ForWrite) as LayerTable;
+                    // счетчик для количества отсутствующих слоёв
+                    int count = 0;
                     try
                     {
-
-                    
                     foreach (var froz in ClTransports)
                     {
+                            bool Flag = false;
                         // если в таблице слоев нет нашего слоя - прекращаем выполнение команды
                         if (acLyrTbl.Has(froz) == false)
                         {
                             // выводим имя слоя которого нет
-                            MessageBox.Show($"нет такого слоя - {froz}"); 
-                            // стираем список
-                            ClTransports = new List<string>() { };
-                            return;
+                            MessageBox.Show($"нет такого слоя - {froz}");
+                                // переходим по метке, чтобы слой не замораживать. 
+                                // если слоя не существует - будет ошибка
+                                count++;
+                                Flag = true;
+                                goto ErrorOccured;
+                                // стираем список
+                            //    ClTransports = new List<string>();
+                            //return;
                         }
 
                         // получаем запись слоя для изменения
@@ -65,7 +71,10 @@ namespace AUtocadWPFFrozLayer04_12_2023
                         //acLyrTblRec.IsOff = true;
                         // замораживаем слой
                         acLyrTblRec.IsFrozen = true;
-                        //acLyrTblRec.IsLocked = true;
+                            //acLyrTblRec.IsLocked = true;
+                            // Переход по условию отсутствия слоя
+                        ErrorOccured: MessageBox.Show($"нет {count}  слоёв");
+                        
                     }
                     }
                     catch (System.Exception ex)

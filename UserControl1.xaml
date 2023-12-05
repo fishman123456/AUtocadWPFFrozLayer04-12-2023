@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AUtocadWPFFrozLayer04_12_2023"
              mc:Ignorable="d" 
-             Height="300" Width="200" 
+             Height="150" Width="100" 
              WindowStyle="ThreeDBorderWindow" WindowStartupLocation="CenterScreen" 
-             MinHeight="200" MinWidth="100"  WindowState="Minimized" >
+             MinHeight="150" MinWidth="100"  >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*"/>
