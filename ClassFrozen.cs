@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Autodesk.AutoCAD.EditorInput;
 
 namespace AUtocadWPFFrozLayer04_12_2023
 {
@@ -14,8 +15,8 @@ namespace AUtocadWPFFrozLayer04_12_2023
     public class ClassFrozen
     {
         // поле для хранения списка
-       
-        public  List<string> ClTransports { get; set; }
+
+        public List<string> ClTransports { get; set; }
         public ClassFrozen() { ClTransports = new List<string>() { }; }
 
         [CommandMethod("NewCommand")]
@@ -30,6 +31,13 @@ namespace AUtocadWPFFrozLayer04_12_2023
             // получаем текущий документ и его БД
             AcadApp.Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             Database acCurDb = acDoc.Database;
+            // блок кода для вывода сообщения в консоль
+            //DocumentManager.MdiActiveDocument.Editor;
+            Editor ed = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Editor;
+            //ed.Editor acEd = acDoc.Editor;
+            //ed = acDoc.Editor;
+            //ed.WriteMessage("Hi!"); //Вывести сообщение в консоль
+
             // переменная стринг для работы со слоями
             //string froz = "0";
             //List<string> strings = new List<string>() { "1", "2" };
@@ -45,37 +53,39 @@ namespace AUtocadWPFFrozLayer04_12_2023
                     int count = 0;
                     try
                     {
-                    foreach (var froz in ClTransports)
-                    {
-                            bool Flag = false;
-                        // если в таблице слоев нет нашего слоя - прекращаем выполнение команды
-                        if (acLyrTbl.Has(froz) == false)
+                        foreach (var froz in ClTransports)
                         {
-                            // выводим имя слоя которого нет
-                            MessageBox.Show($"нет такого слоя - {froz}");
+                            bool Flag = false;
+                            // если в таблице слоев нет нашего слоя - прекращаем выполнение команды
+                            if (acLyrTbl.Has(froz) == false)
+                            {
+                                // выводим имя слоя которого нет
+                                ed.WriteMessage($"нет такого слоя - {froz}\n"); //Вывести сообщение в консоль
                                 // переходим по метке, чтобы слой не замораживать. 
                                 // если слоя не существует - будет ошибка
                                 count++;
                                 Flag = true;
                                 goto ErrorOccured;
                                 // стираем список
-                            //    ClTransports = new List<string>();
-                            //return;
+                                //    ClTransports = new List<string>();
+                                //return;
+                            }
+
+                            // получаем запись слоя для изменения
+                            LayerTableRecord acLyrTblRec = tr.GetObject(acLyrTbl[froz], OpenMode.ForWrite) as LayerTableRecord;
+
+                            // скрываем и блокируем слой
+                            //acLyrTblRec.Name = "test";
+                            //acLyrTblRec.IsOff = true;
+                            // замораживаем слой
+                            acLyrTblRec.IsFrozen = true;
+                        //acLyrTblRec.IsLocked = true;
+                        // Переход по условию отсутствия слоя
+                        ErrorOccured: 
+                            ed.WriteMessage($"Замораживаем  {froz}  слой\n"); //Вывести сообщение в консоль
+                            //MessageBox.Show($"нет {count}  слоёв");
+
                         }
-
-                        // получаем запись слоя для изменения
-                        LayerTableRecord acLyrTblRec = tr.GetObject(acLyrTbl[froz], OpenMode.ForWrite) as LayerTableRecord;
-
-                        // скрываем и блокируем слой
-                        //acLyrTblRec.Name = "test";
-                        //acLyrTblRec.IsOff = true;
-                        // замораживаем слой
-                        acLyrTblRec.IsFrozen = true;
-                            //acLyrTblRec.IsLocked = true;
-                            // Переход по условию отсутствия слоя
-                        ErrorOccured: MessageBox.Show($"нет {count}  слоёв");
-                        
-                    }
                     }
                     catch (System.Exception ex)
                     {
@@ -85,6 +95,7 @@ namespace AUtocadWPFFrozLayer04_12_2023
                     {
                         // стираем список
                         ClTransports = new List<string>() { };
+                        ed.WriteMessage($"нет {count}  слоёв\n"); //Вывести сообщение в консоль
                     }
                     // фиксируем транзакцию
                     tr.Commit();
