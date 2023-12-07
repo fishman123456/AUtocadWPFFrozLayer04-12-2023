@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using static System.Net.Mime.MediaTypeNames;
+
 namespace AUtocadWPFFrozLayer04_12_2023
 {
     /// <summary>
@@ -31,8 +33,9 @@ namespace AUtocadWPFFrozLayer04_12_2023
         }
         // список куда складывать будем имена слоёв
         public List<string> list_lay_name = new List<string>();
-
-
+        // добавляем картинку
+        BitmapImage image = new BitmapImage(new Uri("2.jpg", UriKind.Relative));
+        
 
         // по клику кнопки собираем из тексбокса строки в список по \n\r
         private void B0_Click(object sender, RoutedEventArgs e)
