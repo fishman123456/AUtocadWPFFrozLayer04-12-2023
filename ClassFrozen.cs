@@ -84,7 +84,6 @@ namespace AUtocadWPFFrozLayer04_12_2023
                         ErrorOccured: 
                             ed.WriteMessage($"Замораживаем  {froz}  слой\n"); //Вывести сообщение в консоль
                             //MessageBox.Show($"нет {count}  слоёв");
-
                         }
                     }
                     catch (System.Exception ex)
@@ -95,7 +94,7 @@ namespace AUtocadWPFFrozLayer04_12_2023
                     {
                         // стираем список
                         ClTransports = new List<string>() { };
-                        ed.WriteMessage($"нет {count}  слоёв\n"); //Вывести сообщение в консоль
+                        ed.WriteMessage($"заморожено  {count}  слоёв\n"); //Вывести сообщение в консоль
                     }
                     // фиксируем транзакцию
                     tr.Commit();
@@ -120,7 +119,7 @@ namespace AUtocadWPFFrozLayer04_12_2023
             }
             else
             {
-                MessageBox.Show("Работайте до   " + dt2.ToString());
+               // MessageBox.Show("Работайте до   " + dt2.ToString());
             }
         }
 

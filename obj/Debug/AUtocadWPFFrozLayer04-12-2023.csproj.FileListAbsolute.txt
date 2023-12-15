@@ -93,3 +93,4 @@ D:\Github\AUtocadWPFFrozLayer04-12-2023\obj\Debug\AUtocadWPFFrozLayer04-12-2023.
 D:\Github\AUtocadWPFFrozLayer04-12-2023\obj\Debug\AUtocadWPFFrozLayer04-12-2023.csproj.CopyComplete
 D:\Github\AUtocadWPFFrozLayer04-12-2023\obj\Debug\AUtocadWPFFrozLayer04-12-2023.dll
 D:\Github\AUtocadWPFFrozLayer04-12-2023\obj\Debug\AUtocadWPFFrozLayer04-12-2023.pdb
+C:\Users\Fishman\Documents\GitHub\AUtocadWPFFrozLayer04-12-2023\bin\Debug\2.jpg
