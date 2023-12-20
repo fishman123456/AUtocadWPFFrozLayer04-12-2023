@@ -8,24 +8,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Autodesk.AutoCAD.EditorInput;
+using System.Configuration;
+
+[assembly: CommandClass(typeof(AUtocadWPFFrozLayer04_12_2023.ClassFrozen))]
 
 namespace AUtocadWPFFrozLayer04_12_2023
 {
     // программа сделана на основе _____________    autocad_wf_layer_add_29-03-2023
     public class ClassFrozen
     {
+        string connect = ConfigurationSettings.AppSettings["MyClasses.ConnectionString"];
         // поле для хранения списка
 
         public List<string> ClTransports { get; set; }
         public ClassFrozen() { ClTransports = new List<string>() { }; }
 
-        [CommandMethod("NewCommand")]
+        [CommandMethod("FrozenLayers")]
         public void NewCommand()
         {
             // проверка по дате использования
             CheckDate();
             // запускаем окно
             UserControl1 userControl1 = new UserControl1(this);
+
             AcadApp.Application.ShowModalWindow(userControl1);
 
             // получаем текущий документ и его БД
@@ -112,7 +117,7 @@ namespace AUtocadWPFFrozLayer04_12_2023
 
             if (dt1.Date > dt2.Date)
             {
-                MessageBox.Show("Your Application is Expire");
+                //MessageBox.Show("Your Application is Expire");
                 // Выход из проложения добавил 12-07-2023. Чтобы порядок был....
                 Application.Current.Shutdown();
                 //w1.Close();

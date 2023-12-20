@@ -34,12 +34,15 @@
   <ItemGroup>
     <Reference Include="accoremgd">
       <HintPath>..\..\..\..\..\Program Files\Autodesk\AutoCAD 2024\accoremgd.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="acdbmgd">
       <HintPath>..\..\..\..\..\Program Files\Autodesk\AutoCAD 2024\acdbmgd.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="acmgd">
       <HintPath>..\..\..\..\..\Program Files\Autodesk\AutoCAD 2024\acmgd.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -68,9 +71,15 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="2.jpg">
+    <Resource Include="2.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

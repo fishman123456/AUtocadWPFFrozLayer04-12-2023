@@ -29,12 +29,11 @@
             <RowDefinition Height="80*"/>
             <RowDefinition Height="80*"/>
         </Grid.RowDefinitions>
-        <Image x:Name="image1" Height="200" 
+        <Image x:Name="img" 
                Grid.Row="0" Grid.Column="0"
                Grid.RowSpan="9" Grid.ColumnSpan="7"
                Stretch="Fill" VerticalAlignment="Top" 
-               Source="2.jpg"
-               Width="350" />
+               Source="2.jpg" />
         <TextBox x:Name="lay" Grid.Row="2" Grid.Column="1" Margin="10"
                  Grid.RowSpan="5" Grid.ColumnSpan="5" 
                  TextWrapping="Wrap" 
